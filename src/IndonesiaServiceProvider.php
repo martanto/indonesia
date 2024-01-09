@@ -2,9 +2,9 @@
 
 namespace Martanto\Indonesia;
 
+use Martanto\Indonesia\Commands\IndonesiaCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Martanto\Indonesia\Commands\IndonesiaCommand;
 
 class IndonesiaServiceProvider extends PackageServiceProvider
 {
