@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Martanto\Indonesia\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class IndonesiaCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'indonesia';
 
     public $description = 'My command';
 
