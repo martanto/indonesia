@@ -8,16 +8,11 @@ class IndonesiaCitySeeder extends IndonesiaSeeder
 {
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected string $description = 'Seeding Indonesia City';
 
     /**
      * Transform Data
-     *
-     * @param array $loaded
-     * @return array
      */
     public function data(array $loaded): array
     {
@@ -32,15 +27,12 @@ class IndonesiaCitySeeder extends IndonesiaSeeder
 
     /**
      * Insert data into database
-     *
-     * @param array $json
-     * @return void
      */
     public function seed(array $json): void
     {
         $bar = $this->command->output->createProgressBar($json['count']);
         $bar->start();
-        $json['data']->each(function ($chunked) use ($json, $bar) {
+        $json['data']->each(function ($chunked) use ($bar) {
             IndonesiaCity::insert($chunked->toArray());
             $bar->advance(count($chunked));
         });
@@ -55,13 +47,13 @@ class IndonesiaCitySeeder extends IndonesiaSeeder
         $this->command->info(PHP_EOL.$this->description);
 
         collect([
-            'cities'
+            'cities',
         ])->map(function ($name) {
             return $this->readFromJson($name);
         })->each(function ($json) {
-            $this->command->info('Update data ' . $json['name']);
+            $this->command->info('Update data '.$json['name']);
             $this->seed($json);
-            $this->command->info(' Update data ' . $json['name'] . ' berhasil');
+            $this->command->info(' Update data '.$json['name'].' berhasil');
         });
     }
 }
