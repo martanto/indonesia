@@ -1,6 +1,6 @@
 <?php
 
-namespace Martanto\Indonesia\Database\Seeders;
+namespace Martanto\Indonesia\Seeders;
 
 use Martanto\Indonesia\Models\Indonesia\IndonesiaProvince;
 

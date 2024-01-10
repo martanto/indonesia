@@ -1,15 +1,15 @@
 <?php
 
-namespace Martanto\Indonesia\Database\Seeders;
+namespace Martanto\Indonesia\Seeders;
 
-use Martanto\Indonesia\Models\Indonesia\IndonesiaDistrict;
+use Martanto\Indonesia\Models\Indonesia\IndonesiaCity;
 
-class IndonesiaDistrictSeeder extends IndonesiaSeeder
+class IndonesiaCitySeeder extends IndonesiaSeeder
 {
     /**
      * The console command description.
      */
-    protected string $description = 'Seeding Indonesia District';
+    protected string $description = 'Seeding Indonesia City';
 
     /**
      * Transform Data
@@ -21,7 +21,7 @@ class IndonesiaDistrictSeeder extends IndonesiaSeeder
             'name' => $loaded['name'],
             'latitude' => $loaded['latitude'],
             'longitude' => $loaded['longitude'],
-            'code_city' => $loaded['code_cities'],
+            'code_province' => $loaded['code_province'],
         ];
     }
 
@@ -33,21 +33,21 @@ class IndonesiaDistrictSeeder extends IndonesiaSeeder
         $bar = $this->command->getOutput()->createProgressBar($json['count']);
         $bar->start();
         $json['data']->each(function ($chunked) use ($bar) {
-            IndonesiaDistrict::insert($chunked->toArray());
+            IndonesiaCity::insert($chunked->toArray());
             $bar->advance(count($chunked));
         });
         $bar->finish();
     }
 
     /**
-     * Run seeder
+     * Run the database seeds.
      */
     public function run(): void
     {
         $this->command->info(PHP_EOL.$this->description);
 
         collect([
-            'districts',
+            'cities',
         ])->map(function ($name) {
             return $this->readFromJson($name);
         })->each(function ($json) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Martanto\Indonesia\Database\Seeders;
+namespace Martanto\Indonesia\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             IndonesiaProvinceSeeder::class,
             IndonesiaCitySeeder::class,
+            IndonesiaDistrictSeeder::class,
+            IndonesiaVillageSeeder::class,
         ]);
     }
 
