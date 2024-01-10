@@ -8,16 +8,11 @@ class IndonesiaVillageSeeder extends IndonesiaSeeder
 {
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected string $description = 'Seeding Indonesia Village';
 
     /**
      * Transform Data
-     *
-     * @param array $loaded
-     * @return array
      */
     public function data(array $loaded): array
     {
@@ -32,9 +27,6 @@ class IndonesiaVillageSeeder extends IndonesiaSeeder
 
     /**
      * Insert data into database
-     *
-     * @param array $json
-     * @return void
      */
     public function seed(array $json): void
     {
@@ -49,21 +41,19 @@ class IndonesiaVillageSeeder extends IndonesiaSeeder
 
     /**
      * Run seeder
-     *
-     * @return void
      */
     public function run(): void
     {
         $this->command->info(PHP_EOL.$this->description);
 
         collect([
-            'villages'
+            'villages',
         ])->map(function ($name) {
             return $this->readFromJson($name);
         })->each(function ($json) {
-            $this->command->info('Update data ' . $json['name']);
+            $this->command->info('Update data '.$json['name']);
             $this->seed($json);
-            $this->command->info(' Update data ' . $json['name'] . ' berhasil');
+            $this->command->info(' Update data '.$json['name'].' berhasil');
         });
     }
 }

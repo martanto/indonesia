@@ -12,45 +12,38 @@ abstract class IndonesiaSeeder extends Seeder implements IndonesiaSeederInterfac
 {
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected string $description = 'Seeding Indonesia administrative';
 
     /**
      * JSON loaded from file
-     *
-     * @var array
      */
     protected array $json;
 
     /**
      * Load JSON file as an array
      *
-     * @param string|int|null $keyOne
-     * @param string|int|null $keyTwo
      *
      * @throws ValidationException
      */
     protected function json(
         string $name,
-        string|int $keyOne = null,
-        string|int $keyTwo = null
-    ): array
-    {
-        if (!Storage::disk('json')->exists($name . '.json')) {
+        string|int|null $keyOne = null,
+        string|int|null $keyTwo = null
+    ): array {
+        if (! Storage::disk('json')->exists($name.'.json')) {
             throw ValidationException::withMessages([
                 'file_not_found' => "File $name not found!"]
             );
         }
 
         $this->json = json_decode(
-            Storage::disk('json')->get($name . '.json'),true
+            Storage::disk('json')->get($name.'.json'), true
         );
 
         return match (true) {
-            !is_null($keyTwo) => $this->json = $this->json[$keyOne][$keyTwo],
-            !is_null($keyOne) => $this->json = $this->json[$keyOne],
+            ! is_null($keyTwo) => $this->json = $this->json[$keyOne][$keyTwo],
+            ! is_null($keyOne) => $this->json = $this->json[$keyOne],
             default => $this->json,
         };
 
@@ -59,37 +52,32 @@ abstract class IndonesiaSeeder extends Seeder implements IndonesiaSeederInterfac
     /**
      * Load JSON file as Collection
      *
-     * @param string $name
-     * @param string|int|null $keyOne
-     * @param string|int|null $keyTwo
-     * @return Collection
      * @throws ValidationException
      */
     protected function collection(
         string $name,
-        string|int $keyOne = null,
-        string|int $keyTwo = null
-    ): Collection
-    {
+        string|int|null $keyOne = null,
+        string|int|null $keyTwo = null
+    ): Collection {
         return collect($this->json($name, $keyOne, $keyTwo));
     }
 
     /**
      * Read resources from Storage
      *
-     * @param string $name
      * @return (string|int|Collection)[]
+     *
      * @throws ValidationException
      */
     protected function readFromJson(string $name): array
     {
         $loaded = $this->collection($name)
-            ->transform(callback: fn($loaded) => $this->data($loaded));
+            ->transform(callback: fn ($loaded) => $this->data($loaded));
 
         return [
             'name' => $name,
             'count' => $loaded->count(),
-            'data' => $loaded->chunk(500)
+            'data' => $loaded->chunk(500),
         ];
     }
 }
