@@ -38,9 +38,9 @@ class IndonesiaVillageSeeder extends IndonesiaSeeder
      */
     public function seed(array $json): void
     {
-        $bar = $this->command->output->createProgressBar($json['count']);
+        $bar = $this->command->getOutput()->createProgressBar($json['count']);
         $bar->start();
-        $json['data']->each(function ($chunked) use ($json, $bar) {
+        $json['data']->each(function ($chunked) use ($bar) {
             IndonesiaVillage::insert($chunked->toArray());
             $bar->advance(count($chunked));
         });
