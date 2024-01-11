@@ -18,18 +18,22 @@ abstract class IndonesiaSeeder extends Seeder implements IndonesiaSeederInterfac
     /**
      * JSON loaded from file
      */
-    protected array $json;
+    public array $json;
 
     /**
      * Load JSON file as an array
      */
-    protected function json(
+    public function json(
         string $name,
         string|int|null $keyOne = null,
         string|int|null $keyTwo = null
     ): array {
+        $json = file_get_contents(
+            filename: __DIR__."/../../storage/app/json/$name.json"
+        );
+
         $this->json = json_decode(
-            json: __DIR__."/../../storage/app/json/$name.json",
+            json: $json,
             associative: true
         );
 
@@ -46,7 +50,7 @@ abstract class IndonesiaSeeder extends Seeder implements IndonesiaSeederInterfac
      *
      * @throws ValidationException
      */
-    protected function collection(
+    public function collection(
         string $name,
         string|int|null $keyOne = null,
         string|int|null $keyTwo = null
@@ -61,7 +65,7 @@ abstract class IndonesiaSeeder extends Seeder implements IndonesiaSeederInterfac
      *
      * @throws ValidationException
      */
-    protected function readFromJson(string $name): array
+    public function readFromJson(string $name): array
     {
         $loaded = $this->collection($name)
             ->transform(callback: fn ($loaded) => $this->data($loaded));
