@@ -24,8 +24,6 @@ return new class extends Migration
                 ->references('code')
                 ->on('indonesia_cities')
                 ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 
