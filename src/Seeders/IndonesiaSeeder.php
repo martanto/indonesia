@@ -31,14 +31,16 @@ abstract class IndonesiaSeeder extends Seeder implements IndonesiaSeederInterfac
         string|int|null $keyOne = null,
         string|int|null $keyTwo = null
     ): array {
-        if (! Storage::disk('json')->exists($name.'.json')) {
+        $json = "json/$name.json";
+
+        if (! Storage::disk('local')->exists($json)) {
             throw ValidationException::withMessages([
                 'file_not_found' => "File $name not found!"]
             );
         }
 
         $this->json = json_decode(
-            Storage::disk('json')->get($name.'.json'), true
+            Storage::disk('local')->get($json), true
         );
 
         return match (true) {
