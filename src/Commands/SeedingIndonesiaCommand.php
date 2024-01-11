@@ -12,6 +12,8 @@ class SeedingIndonesiaCommand extends Command
 
     public function handle(): int
     {
+        $this->info($this->description);
+
         $this->call(
             command : 'db:seed',
             arguments : [
