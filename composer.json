@@ -39,9 +39,6 @@
         }
     },
     "autoload-dev": {
-        "psr-4": {
-            "Martanto\\Indonesia\\Tests\\": "tests/"
-        }
     },
     "scripts": {
         "post-autoload-dump": "@composer run prepare",
