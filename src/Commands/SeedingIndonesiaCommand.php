@@ -15,7 +15,7 @@ class SeedingIndonesiaCommand extends Command
         $this->call(
             command : 'db:seed',
             arguments : [
-                '--class' => 'Martanto\Indonesia\Database\Seeders\DatabaseSeeder',
+                '--class' => 'Martanto\Indonesia\Seeders\DatabaseSeeder',
                 '--force' => true,
             ]
         );
