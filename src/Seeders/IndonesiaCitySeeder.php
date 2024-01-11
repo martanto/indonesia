@@ -51,9 +51,8 @@ class IndonesiaCitySeeder extends IndonesiaSeeder
         ])->map(function ($name) {
             return $this->readFromJson($name);
         })->each(function ($json) {
-            $this->command->info('Update data '.$json['name']);
             $this->seed($json);
-            $this->command->info(' Update data '.$json['name'].' berhasil');
+            $this->command->info(' Done!');
         });
     }
 }

@@ -21,6 +21,7 @@ class IndonesiaVillageSeeder extends IndonesiaSeeder
             'name' => $loaded['name'],
             'latitude' => $loaded['latitude'],
             'longitude' => $loaded['longitude'],
+            'postal_code' => $loaded['postal_code'],
             'code_district' => $loaded['code_districts'],
         ];
     }
@@ -51,9 +52,8 @@ class IndonesiaVillageSeeder extends IndonesiaSeeder
         ])->map(function ($name) {
             return $this->readFromJson($name);
         })->each(function ($json) {
-            $this->command->info('Update data '.$json['name']);
             $this->seed($json);
-            $this->command->info(' Update data '.$json['name'].' berhasil');
+            $this->command->info(' Done!');
         });
     }
 }
