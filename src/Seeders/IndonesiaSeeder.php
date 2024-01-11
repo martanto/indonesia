@@ -22,25 +22,15 @@ abstract class IndonesiaSeeder extends Seeder implements IndonesiaSeederInterfac
 
     /**
      * Load JSON file as an array
-     *
-     *
-     * @throws ValidationException
      */
     protected function json(
         string $name,
         string|int|null $keyOne = null,
         string|int|null $keyTwo = null
     ): array {
-        $json = "json/$name.json";
-
-        if (! Storage::disk('local')->exists($json)) {
-            throw ValidationException::withMessages([
-                'file_not_found' => "File $name not found!"]
-            );
-        }
-
         $this->json = json_decode(
-            Storage::disk('local')->get($json), true
+            json: __DIR__."/../../storage/app/json/$name.json",
+            associative: true
         );
 
         return match (true) {
