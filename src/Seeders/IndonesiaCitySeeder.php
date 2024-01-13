@@ -4,7 +4,7 @@ namespace Martanto\Indonesia\Seeders;
 
 use Martanto\Indonesia\Models\Indonesia\IndonesiaCity;
 
-class IndonesiaCitySeeder extends IndonesiaSeeder
+class IndonesiaCitySeeder extends BaseIndonesiaSeeder
 {
     /**
      * The console command description.
@@ -26,33 +26,10 @@ class IndonesiaCitySeeder extends IndonesiaSeeder
     }
 
     /**
-     * Insert data into database
-     */
-    public function seed(array $json): void
-    {
-        $bar = $this->command->getOutput()->createProgressBar($json['count']);
-        $bar->start();
-        $json['data']->each(function ($chunked) use ($bar) {
-            IndonesiaCity::insert($chunked->toArray());
-            $bar->advance(count($chunked));
-        });
-        $bar->finish();
-    }
-
-    /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $this->command->info(PHP_EOL.$this->description);
-
-        collect([
-            'cities',
-        ])->map(function ($name) {
-            return $this->readFromJson($name);
-        })->each(function ($json) {
-            $this->seed($json);
-            $this->command->info(' Done!');
-        });
+        $this->handle('cities', new IndonesiaCity);
     }
 }

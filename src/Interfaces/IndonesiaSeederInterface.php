@@ -2,6 +2,8 @@
 
 namespace Martanto\Indonesia\Interfaces;
 
+use Illuminate\Database\Eloquent\Model;
+
 interface IndonesiaSeederInterface
 {
     /**
@@ -12,10 +14,5 @@ interface IndonesiaSeederInterface
     /**
      * Insert data into database
      */
-    public function seed(array $json): void;
-
-    /**
-     * Run seeder
-     */
-    public function run(): void;
+    public function seed(array $json, Model $model): void;
 }
