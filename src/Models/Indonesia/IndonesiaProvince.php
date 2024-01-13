@@ -3,13 +3,14 @@
 namespace Martanto\Indonesia\Models\Indonesia;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class IndonesiaProvince extends Model
 {
     /**
      * @return HasMany
      */
-    public function cities()
+    public function cities(): HasMany
     {
         return $this->hasMany(
             related: IndonesiaCity::class,
@@ -18,7 +19,10 @@ class IndonesiaProvince extends Model
         );
     }
 
-    public function districts()
+    /**
+     * @return HasManyThrough
+     */
+    public function districts(): HasManyThrough
     {
         return $this->hasManyThrough(
             related: IndonesiaDistrict::class,
