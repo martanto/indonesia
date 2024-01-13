@@ -79,10 +79,6 @@ abstract class BaseIndonesiaSeeder extends Seeder implements IndonesiaSeederInte
 
     /**
      * Seeding data
-     *
-     * @param array $json
-     * @param Model $model
-     * @return void
      */
     public function seed(array $json, Model $model): void
     {
@@ -97,9 +93,6 @@ abstract class BaseIndonesiaSeeder extends Seeder implements IndonesiaSeederInte
 
     /**
      * Handling run for seeding
-     *
-     * @param string $jsonFile
-     * @return void
      */
     public function handle(string $jsonFile, Model $model): void
     {
