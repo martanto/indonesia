@@ -13,9 +13,15 @@ use Martanto\Indonesia\Models\Indonesia\IndonesiaVillage;
 
 class Indonesia
 {
-    public bool $cache = true;
+    /**
+     * @var bool
+     */
+    protected bool $cache = true;
 
-    public string $cachePrefix = 'indonesia';
+    /**
+     * @var string
+     */
+    protected string $cachePrefix = 'indonesia';
 
     /**
      * @param IndonesiaProvince $province
@@ -73,7 +79,7 @@ class Indonesia
      */
     public function provinceByCode(string|int $code): Model|static
     {
-        return $this->province->byCode($code)->firstOrFail();
+        return $this->province()->byCode($code)->firstOrFail();
     }
 
     /**
@@ -84,24 +90,24 @@ class Indonesia
     {
         return $this->cache ? Cache::rememberForever(
             key: "{$this->cachePrefix}_all_provinces",
-            callback: fn() => $this->province->all()
-        ) : $this->province->all();
+            callback: fn() => $this->province()->all()
+        ) : $this->province()->all();
     }
 
     public function provinceWithCities()
     {
         return $this->cache ? Cache::rememberForever(
             key: "{$this->cachePrefix}_province_with_cities",
-            callback: fn() => $this->province->with('cities')->get()
-        ) : $this->province->with('cities')->get();
+            callback: fn() => $this->province()->with('cities')->get()
+        ) : $this->province()->with('cities')->get();
     }
 
     public function provinceWithDistricts()
     {
         return $this->cache ? Cache::rememberForever(
             key: "{$this->cachePrefix}_province_with_districts",
-            callback: fn() => $this->province->with('districts')->get()
-        ) : $this->province->with('districts')->get();
+            callback: fn() => $this->province()->with('districts')->get()
+        ) : $this->province()->with('districts')->get();
     }
 
     /**
@@ -112,6 +118,6 @@ class Indonesia
      */
     public function paginateProvinces(int $page = 15): LengthAwarePaginator
     {
-        return $this->province->paginate($page);
+        return $this->province()->paginate($page);
     }
 }
