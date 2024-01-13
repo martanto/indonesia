@@ -37,12 +37,6 @@ return [
 ];
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="indonesia-views"
-```
-
 ## Usage
 
 Will be updated soon
