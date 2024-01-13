@@ -17,47 +17,40 @@ class Indonesia
 
     public string $cachePrefix = 'indonesia';
 
-    /**
-     * @param IndonesiaProvince $province
-     * @param IndonesiaCity $city
-     * @param IndonesiaDistrict $district
-     * @param IndonesiaVillage $village
-     */
     public function __construct(
         protected IndonesiaProvince $province,
         protected IndonesiaCity $city,
         protected IndonesiaDistrict $district,
         protected IndonesiaVillage $village
-    ) {}
+    ) {
+    }
 
     /**
      * Set cache to be used or not
      *
-     * @param bool $cache
      * @return $this
      */
     public function cache(bool $cache): self
     {
         $this->cache = $cache;
+
         return $this;
     }
 
     /**
      * Prefix cache
      *
-     * @param string $cachePrefix
      * @return $this
      */
     public function cachePrefix(string $cachePrefix): self
     {
         $this->cachePrefix = $cachePrefix;
+
         return $this;
     }
 
     /**
      * Get Indonesia Province model
-     *
-     * @return IndonesiaProvince
      */
     public function province(): IndonesiaProvince
     {
@@ -66,10 +59,6 @@ class Indonesia
 
     /**
      * Get Indonesia province by province code
-     *
-     * @param string|int $code
-     * @return Model|static
-     *
      */
     public function provinceByCode(string|int $code): Model|static
     {
@@ -78,13 +67,12 @@ class Indonesia
 
     /**
      * Get all Indonesia provinces
-     *
      */
     public function allProvinces(): Collection
     {
         return $this->cache ? Cache::rememberForever(
             key: "{$this->cachePrefix}_all_provinces",
-            callback: fn() => $this->province->all()
+            callback: fn () => $this->province->all()
         ) : $this->province->all();
     }
 
@@ -92,7 +80,7 @@ class Indonesia
     {
         return $this->cache ? Cache::rememberForever(
             key: "{$this->cachePrefix}_province_with_cities",
-            callback: fn() => $this->province->with('cities')->get()
+            callback: fn () => $this->province->with('cities')->get()
         ) : $this->province->with('cities')->get();
     }
 
@@ -100,15 +88,12 @@ class Indonesia
     {
         return $this->cache ? Cache::rememberForever(
             key: "{$this->cachePrefix}_province_with_districts",
-            callback: fn() => $this->province->with('districts')->get()
+            callback: fn () => $this->province->with('districts')->get()
         ) : $this->province->with('districts')->get();
     }
 
     /**
      * Paginate Indonesia province result
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
      */
     public function paginateProvinces(int $page = 15): LengthAwarePaginator
     {

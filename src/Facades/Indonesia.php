@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Facade;
  * Class Indonesia
  *
  * @mixin \Martanto\Indonesia\IndonesiaServiceProvider
- * @package Martanto\Indonesia\Facades
  */
 class Indonesia extends Facade
 {
