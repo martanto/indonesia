@@ -2,13 +2,13 @@
 
 namespace Martanto\Indonesia\Seeders;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Martanto\Indonesia\Interfaces\IndonesiaSeederInterface;
 
-abstract class IndonesiaSeeder extends Seeder implements IndonesiaSeederInterface
+abstract class BaseIndonesiaSeeder extends Seeder implements IndonesiaSeederInterface
 {
     /**
      * The console command description.
@@ -75,5 +75,36 @@ abstract class IndonesiaSeeder extends Seeder implements IndonesiaSeederInterfac
             'count' => $loaded->count(),
             'data' => $loaded->chunk(500),
         ];
+    }
+
+    /**
+     * Seeding data
+     */
+    public function seed(array $json, Model $model): void
+    {
+        $bar = $this->command->getOutput()->createProgressBar($json['count']);
+        $bar->start();
+        $json['data']->each(function ($chunked) use ($model, $bar) {
+            $model::insert($chunked->toArray());
+            $bar->advance(count($chunked));
+        });
+        $bar->finish();
+    }
+
+    /**
+     * Handling run for seeding
+     */
+    public function handle(string $jsonFile, Model $model): void
+    {
+        $this->command->info(PHP_EOL.$this->description);
+
+        collect([
+            $jsonFile,
+        ])->map(function ($name) {
+            return $this->readFromJson($name);
+        })->each(function ($json) use ($model) {
+            $this->seed($json, $model);
+            $this->command->info(' Done!');
+        });
     }
 }
