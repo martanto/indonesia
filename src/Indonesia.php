@@ -2,6 +2,7 @@
 
 namespace Martanto\Indonesia;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -58,6 +59,36 @@ class Indonesia
     }
 
     /**
+     * Get Indonesia City model
+     *
+     * @return IndonesiaCity
+     */
+    public function city(): IndonesiaCity
+    {
+        return $this->city;
+    }
+
+    /**
+     * Get Indonesia District model
+     *
+     * @return IndonesiaDistrict
+     */
+    public function district(): IndonesiaDistrict
+    {
+        return $this->district;
+    }
+
+    /**
+     * Get Indonesia Village model
+     *
+     * @return IndonesiaVillage
+     */
+    public function village(): IndonesiaVillage
+    {
+        return $this->village;
+    }
+
+    /**
      * Get Indonesia province by province code
      */
     public function provinceByCode(string|int $code): Model|static
@@ -76,7 +107,12 @@ class Indonesia
         ) : $this->province()->all();
     }
 
-    public function provinceWithCities()
+    /**
+     * Get all provinces with cities
+     *
+     * @return Builder[]|Collection|mixed
+     */
+    public function provinceWithCities(): mixed
     {
         return $this->cache ? Cache::rememberForever(
             key: "{$this->cachePrefix}_province_with_cities",
@@ -84,7 +120,12 @@ class Indonesia
         ) : $this->province()->with('cities')->get();
     }
 
-    public function provinceWithDistricts()
+    /**
+     * Get all provinces with districts
+     *
+     * @return Builder[]|Collection|mixed
+     */
+    public function provinceWithDistricts(): mixed
     {
         return $this->cache ? Cache::rememberForever(
             key: "{$this->cachePrefix}_province_with_districts",
