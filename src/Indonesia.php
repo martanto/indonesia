@@ -60,8 +60,6 @@ class Indonesia
 
     /**
      * Get Indonesia City model
-     *
-     * @return IndonesiaCity
      */
     public function city(): IndonesiaCity
     {
@@ -70,8 +68,6 @@ class Indonesia
 
     /**
      * Get Indonesia District model
-     *
-     * @return IndonesiaDistrict
      */
     public function district(): IndonesiaDistrict
     {
@@ -80,8 +76,6 @@ class Indonesia
 
     /**
      * Get Indonesia Village model
-     *
-     * @return IndonesiaVillage
      */
     public function village(): IndonesiaVillage
     {
