@@ -5,7 +5,8 @@
         "Martanto",
         "laravel",
         "indonesia",
-        "administratif"
+        "administratif",
+        "administrative"
     ],
     "homepage": "https://github.com/martanto/indonesia",
     "license": "MIT",
@@ -35,8 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Martanto\\Indonesia\\": "src/",
-            "Martanto\\Indonesia\\Database\\Factories\\": "database/factories/"
+            "Martanto\\Indonesia\\": "src/"
         }
     },
     "autoload-dev": {
