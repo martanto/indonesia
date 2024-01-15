@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class IndonesiaProvince extends Model
 {
+    /**
+     * Get cities
+     */
     public function cities(): HasMany
     {
         return $this->hasMany(
@@ -16,6 +19,9 @@ class IndonesiaProvince extends Model
         );
     }
 
+    /**
+     * Get districts through cities
+     */
     public function districts(): HasManyThrough
     {
         return $this->hasManyThrough(
