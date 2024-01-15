@@ -4,7 +4,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/martanto/indonesia/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/martanto/indonesia/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/martanto/indonesia.svg?style=flat-square)](https://packagist.org/packages/martanto/indonesia)
 
-Paket ini digunakan sebagai alternatif untuk mendapatakn data Administrasi Indonesia. Meliputi data provinsi, kota/kabupaten, kecamatan, dan desa/kelurahan. Paket ini terinspirasi dari [Laravolt Indonesia](https://github.com/laravolt/indonesia).
+Paket ini digunakan sebagai alternatif untuk mendapatkan data Administrasi Indonesia. Meliputi data provinsi, kota/kabupaten, kecamatan, dan desa/kelurahan. Paket ini terinspirasi dari [Laravolt Indonesia](https://github.com/laravolt/indonesia).
 
 
 ## Installation
